@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ATAK plugins run inside the ATAK process, so runtime behaviour uses ATAK's
+    permissions (WAKE_LOCK, VIBRATE, POST_NOTIFICATIONS, network, location...).
+    Nothing needs to be requested here.
+
+    The "com.atakmap.app.component" activity is not a real activity: ATAK uses
+    it to discover installed plugins. Keep it exactly as in the SDK template.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="false"
+        android:description="@string/app_desc"
+        android:extractNativeLibs="true"
+        android:icon="@drawable/ic_lonewolf"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        tools:ignore="MissingApplicationIcon">
+
+        <meta-data
+            android:name="plugin-api"
+            android:value="${atakApiVersion}" />
+        <meta-data
+            android:name="app_desc"
+            android:value="@string/app_desc" />
+
+        <activity
+            android:name="com.atakmap.app.component"
+            android:exported="true"
+            tools:ignore="MissingClass">
+            <intent-filter android:label="@string/app_name">
+                <action android:name="com.atakmap.app.component" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

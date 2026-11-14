@@ -1,0 +1,154 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+// Lone Worker ATAK plugin - app build script
+//
+// Modelled on the ATAK-CIV SDK "plugintemplate" build script. The takdev
+// Gradle plugin supplies the ATAK SDK classes (main.jar), the ATAK API version
+// placeholder and the debug signing configuration.
+//
+// IMPORTANT: if this file disagrees with samples/plugintemplate/app/build.gradle
+// from YOUR ATAK-CIV 5.6 SDK, the SDK's version wins. Copy it over and keep
+// only the lines marked "LONEWOLF" below.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+buildscript {
+    ext.PLUGIN_VERSION = "1.0.0"          // LONEWOLF
+    ext.ATAK_VERSION = "5.6.0"            // LONEWOLF: must match the ATAK on the device
+
+    def takdevVersion = '3.+'
+
+    def getValueFromPropertiesFile = { propFile, key ->
+        if (!propFile.isFile() || !propFile.canRead())
+            return null
+        def prop = new Properties()
+        def reader = propFile.newReader()
+        try {
+            prop.load(reader)
+        } finally {
+            reader.close()
+        }
+        return prop.get(key)
+    }
+
+    def getProperty = { name, defValue ->
+        def prop = project.properties[name] ?:
+                getValueFromPropertiesFile(project.rootProject.file('local.properties'), name)
+        return (null == prop) ? defValue : prop
+    }
+
+    def urlKey = 'takrepo.url'
+
+    ext.isDevKitEnabled = { ->
+        return getProperty(urlKey, null) == null
+    }
+
+    ext.takrepoUrl = getProperty(urlKey, 'https://localhost/')
+    ext.takrepoUser = getProperty('takrepo.user', 'invalid')
+    ext.takrepoPassword = getProperty('takrepo.password', 'invalid')
+    // Default assumes this repo is checked out at <SDK>/samples/lonewolf (or <SDK>/plugins/lonewolf)
+    ext.takdevPlugin = getProperty('takdev.plugin', "${rootDir}/../../atak-gradle-takdev.jar")
+
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url = takrepoUrl
+            credentials {
+                username = takrepoUser
+                password = takrepoPassword
+            }
+        }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.7.3'
+        if (isDevKitEnabled()) {
+            classpath files(takdevPlugin)
+        } else {
+            classpath "com.atakmap.gradle:atak-gradle-takdev:${takdevVersion}"
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'atak-takdev-plugin'
+
+// Version code: ATAK major/minor + plugin build number
+def versionCodeBase = 1
+
+android {
+    namespace 'com.atakmap.android.lonewolf.plugin'   // LONEWOLF
+    compileSdk 35
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    defaultConfig {
+        applicationId 'com.atakmap.android.lonewolf.plugin'   // LONEWOLF
+        minSdkVersion 24
+        targetSdkVersion 35
+        versionCode versionCodeBase
+        versionName "${PLUGIN_VERSION} (${ATAK_VERSION})"
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    flavorDimensions 'application'
+    productFlavors {
+        civ {
+            getIsDefault().set(true)
+            dimension 'application'
+            manifestPlaceholders = [atakApiVersion: "com.atakmap.app@" + ATAK_VERSION + ".CIV"]
+            matchingFallbacks = ['civ']
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            matchingFallbacks = ['sdk']
+        }
+        release {
+            minifyEnabled true
+            proguardFiles 'proguard-gradle.txt'
+            matchingFallbacks = ['odk']
+        }
+    }
+
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/INDEX.LIST']
+        }
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    // ATAK SDK classes are provided (compileOnly) by the takdev plugin.
+    testImplementation 'junit:junit:4.13.2'
+}

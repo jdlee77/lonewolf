@@ -1,0 +1,17 @@
+# Release builds only (debug builds are not minified).
+# For a TAK Product Center signed release, use the proguard files from your
+# SDK's plugintemplate; the takdev plugin applies ATAK's mapping automatically.
+
+-dontskipnonpubliclibraryclassmembers
+-dontshrink
+-dontoptimize
+
+# Entry points loaded by name from assets/plugin.xml
+-keep class com.atakmap.android.lonewolf.plugin.LoneWolfLifecycle { *; }
+-keep class com.atakmap.android.lonewolf.plugin.LoneWolfTool { *; }
+-keep class com.atakmap.android.lonewolf.LoneWolfMapComponent { *; }
+
+# Views referenced from XML layouts
+-keep class * extends android.view.View { <init>(...); }
+
+-keepattributes *Annotation*,Signature,InnerClasses,EnclosingMethod
