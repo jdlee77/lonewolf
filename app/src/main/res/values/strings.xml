@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lone Worker</string>
+    <string name="app_desc">Lone worker alarm: motion, man-down and check-in monitoring with TAK emergency escalation.</string>
+
+    <string name="tab_worker">Worker</string>
+    <string name="tab_team">Team</string>
+    <string name="tab_settings">Settings</string>
+    <string name="tab_log">Log</string>
+
+    <string name="state_disarmed">DISARMED</string>
+    <string name="state_armed">ARMED – monitoring</string>
+    <string name="state_prealarm">%1$s\nMOVE OR PRESS I\'M OK\nAlarm in %2$s</string>
+    <string name="state_alarm">ALARM SENT\n%1$s</string>
+
+    <string name="arm">ARM LONE WORKER</string>
+    <string name="disarm">DISARM</string>
+    <string name="im_ok">I\'M OK</string>
+    <string name="cancel_alarm">CANCEL ALARM (I\'M SAFE)</string>
+    <string name="test_alert">Test local alert</string>
+    <string name="pan_to">Pan to</string>
+    <string name="acknowledge">Acknowledge</string>
+    <string name="refresh">Refresh</string>
+    <string name="save">Save settings</string>
+    <string name="settings_saved">Lone Worker settings saved</string>
+
+    <string name="battery_warning">ATAK is battery-optimized. Monitoring may pause with the screen off. Set ATAK battery usage to \"Unrestricted\" in Android settings.</string>
+    <string name="team_empty">No lone workers heard yet. Workers running this plugin appear here when armed.</string>
+    <string name="no_location">No location known for this worker</string>
+    <string name="no_contacts">No contacts selected</string>
+    <string name="no_contacts_known">ATAK has no contacts yet</string>
+    <string name="pick_contacts">Choose contacts…</string>
+
+    <string name="confirm_disarm_title">Disarm lone worker?</string>
+    <string name="confirm_disarm_msg">Monitoring will stop and your team will see you as disarmed.</string>
+    <string name="confirm_cancel_title">Cancel the alarm?</string>
+    <string name="confirm_cancel_msg">Only cancel if you are safe. A cancel message will be sent to the TAK Server and your team.</string>
+    <string name="confirm_ack_title">Acknowledge alarm?</string>
+    <string name="confirm_ack_msg">The worker will be told that their alarm was acknowledged by you.</string>
+    <string name="disarm_refused">An alarm is active. Cancel the alarm first.</string>
+
+    <string name="hdr_timers">Timers</string>
+    <string name="hdr_motion">Motion &amp; man-down</string>
+    <string name="hdr_local">Local alerts</string>
+    <string name="hdr_tak">TAK alerts</string>
+    <string name="lbl_inactivity">No-motion time before pre-alarm (minutes)</string>
+    <string name="lbl_prealarm">Pre-alarm countdown before TAK alarm (seconds)</string>
+    <string name="lbl_checkin">Periodic check-in (must press I\'M OK)</string>
+    <string name="lbl_motion">Motion needed to reset (seconds)</string>
+    <string name="lbl_sensitivity">Motion sensitivity (adapts to vibration automatically)</string>
+    <string name="lbl_fall">Man-down (fall) detection</string>
+    <string name="lbl_fall_still">Stillness after fall before pre-alarm (seconds)</string>
+    <string name="lbl_sound">Beep</string>
+    <string name="lbl_override">Override silent mode (max alarm volume)</string>
+    <string name="lbl_vibrate">Vibrate</string>
+    <string name="lbl_torch">Flash torch</string>
+    <string name="lbl_wake">Wake and flash screen</string>
+    <string name="lbl_siren">Siren while alarm is active</string>
+    <string name="lbl_silence_ack">Silence siren when acknowledged</string>
+    <string name="lbl_recipients">Send alarms to</string>
+    <string name="lbl_repeat">Re-send emergency with fresh location every (seconds)</string>
+    <string name="lbl_status">Status heartbeat every (seconds)</string>
+
+    <string name="channel_status">Lone Worker status</string>
+    <string name="channel_alarm">Lone Worker alarms</string>
+    <string name="notif_armed_title">Lone Worker armed</string>
+    <string name="notif_prealarm_title">LONE WORKER – ARE YOU OK?</string>
+    <string name="notif_prealarm_inactivity">No movement detected. Move the device or press I\'M OK, or an alarm will be sent to your team.</string>
+    <string name="notif_prealarm_checkin">Check-in due. Press I\'M OK, or an alarm will be sent to your team.</string>
+    <string name="notif_prealarm_fall">Possible fall detected. Move the device or press I\'M OK, or an alarm will be sent to your team.</string>
+    <string name="notif_alarm_title">LONE WORKER ALARM SENT</string>
+    <string name="notif_alarm_text">Emergency sent to %1$s. Open ATAK and press CANCEL ALARM only if you are safe.</string>
+    <string name="notif_ack_title">HELP IS AWARE</string>
+    <string name="notif_ack_text">Your alarm was acknowledged by %1$s.</string>
+</resources>

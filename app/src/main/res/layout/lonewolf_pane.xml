@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!-- Tabs -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/tab_worker"
+            style="@style/LwTab"
+            android:text="@string/tab_worker" />
+
+        <Button
+            android:id="@+id/tab_team"
+            style="@style/LwTab"
+            android:text="@string/tab_team" />
+
+        <Button
+            android:id="@+id/tab_settings"
+            style="@style/LwTab"
+            android:text="@string/tab_settings" />
+
+        <Button
+            android:id="@+id/tab_log"
+            style="@style/LwTab"
+            android:text="@string/tab_log" />
+    </LinearLayout>
+
+    <!-- ============================================================ Worker -->
+    <ScrollView
+        android:id="@+id/panel_worker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/state_disarmed"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_warning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="#5D4037"
+                android:padding="8dp"
+                android:text="@string/battery_warning"
+                android:textColor="#FFE082"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_ok"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#2E7D32"
+                android:text="@string/im_ok"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_cancel_alarm"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#C62828"
+                android:text="@string/cancel_alarm"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_arm"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/arm"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="2dp"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btn_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/test_alert" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ============================================================ Team -->
+    <ScrollView
+        android:id="@+id/panel_team"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:id="@+id/tv_team_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="@string/team_empty" />
+
+            <LinearLayout
+                android:id="@+id/team_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ============================================================ Settings -->
+    <ScrollView
+        android:id="@+id/panel_settings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="8dp">
+
+            <TextView style="@style/LwHeader" android:text="@string/hdr_timers" />
+
+            <TextView style="@style/LwLabel" android:text="@string/lbl_inactivity" />
+            <EditText android:id="@+id/et_inactivity" style="@style/LwNumber" />
+
+            <TextView style="@style/LwLabel" android:text="@string/lbl_prealarm" />
+            <EditText android:id="@+id/et_prealarm" style="@style/LwNumber" />
+
+            <CheckBox android:id="@+id/cb_checkin" style="@style/LwCheck" android:text="@string/lbl_checkin" />
+            <com.atakmap.android.gui.PluginSpinner
+                android:id="@+id/sp_checkin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView style="@style/LwHeader" android:text="@string/hdr_motion" />
+
+            <TextView style="@style/LwLabel" android:text="@string/lbl_motion" />
+            <EditText android:id="@+id/et_motion" style="@style/LwNumber" />
+
+            <TextView style="@style/LwLabel" android:text="@string/lbl_sensitivity" />
+            <com.atakmap.android.gui.PluginSpinner
+                android:id="@+id/sp_sensitivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <CheckBox android:id="@+id/cb_fall" style="@style/LwCheck" android:text="@string/lbl_fall" />
+            <TextView style="@style/LwLabel" android:text="@string/lbl_fall_still" />
+            <EditText android:id="@+id/et_fall_still" style="@style/LwNumber" />
+
+            <TextView style="@style/LwHeader" android:text="@string/hdr_local" />
+            <CheckBox android:id="@+id/cb_sound" style="@style/LwCheck" android:text="@string/lbl_sound" />
+            <CheckBox android:id="@+id/cb_override" style="@style/LwCheck" android:text="@string/lbl_override" />
+            <CheckBox android:id="@+id/cb_vibrate" style="@style/LwCheck" android:text="@string/lbl_vibrate" />
+            <CheckBox android:id="@+id/cb_torch" style="@style/LwCheck" android:text="@string/lbl_torch" />
+            <CheckBox android:id="@+id/cb_wake" style="@style/LwCheck" android:text="@string/lbl_wake" />
+            <CheckBox android:id="@+id/cb_siren" style="@style/LwCheck" android:text="@string/lbl_siren" />
+            <CheckBox android:id="@+id/cb_silence_ack" style="@style/LwCheck" android:text="@string/lbl_silence_ack" />
+
+            <TextView style="@style/LwHeader" android:text="@string/hdr_tak" />
+
+            <TextView style="@style/LwLabel" android:text="@string/lbl_recipients" />
+            <com.atakmap.android.gui.PluginSpinner
+                android:id="@+id/sp_recipients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btn_contacts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pick_contacts" />
+
+            <TextView
+                android:id="@+id/tv_contacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="6dp" />
+
+            <TextView style="@style/LwLabel" android:text="@string/lbl_repeat" />
+            <EditText android:id="@+id/et_repeat" style="@style/LwNumber" />
+
+            <TextView style="@style/LwLabel" android:text="@string/lbl_status" />
+            <EditText android:id="@+id/et_status" style="@style/LwNumber" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/save" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ============================================================ Log -->
+    <LinearLayout
+        android:id="@+id/panel_log"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_log_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/refresh" />
+
+            <TextView
+                android:id="@+id/tv_log_path"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_log"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textIsSelectable="true"
+                android:textSize="11sp" />
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

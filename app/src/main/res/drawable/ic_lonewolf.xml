@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Person with an alert ring: lone worker. White so it reads on ATAK's dark toolbar. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- alert ring -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:pathData="M24,3 A21,21 0 1,1 23.99,3 Z" />
+    <!-- head -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,10 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" />
+    <!-- body -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M16,38 L16,26 Q16,19 24,19 Q32,19 32,26 L32,38 L28,38 L28,28 L26,28 L26,38 L22,38 L22,28 L20,28 L20,38 Z" />
+</vector>
