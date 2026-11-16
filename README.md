@@ -37,7 +37,7 @@ Target device: Samsung Galaxy XCover 7 Pro, Android 17.
 | Inactivity and man-down (both) | Inactivity timer reset by sustained motion. Fall = free-fall followed by an impact, then stillness. |
 | Periodic check-in | Selectable 15 min to 4 h. Only **I'M OK** satisfies a check-in; motion does not. |
 | Dynamic sensitivity | Adaptive noise floor (see below) plus Low/Medium/High setting. |
-| 5 min then 60 s defaults | Both configurable: inactivity 1–240 min, pre-alarm 10–600 s. |
+| 5 min then 60 s defaults | Both configurable in seconds: no-motion time 10–14400 s (default 300 = 5 min), pre-alarm 10–600 s. |
 | Local alert options | Beep, override silent mode, vibrate, torch strobe, wake screen, siren during alarm, silence siren on acknowledgement. Each is a separate checkbox. |
 | Motion that lasts 2 s cancels the pre-alarm | Configurable 1–30 s. One short pause inside the motion is tolerated. |
 | ATAK built-in emergency | `b-a-o-tbl` "911 Alert" in the same format as ATAK's Emergency tool, so every ATAK/WinTAK/iTAK client raises its native alert. |
@@ -306,7 +306,7 @@ the Team list or the Acknowledge button.
 ## Field test checklist
 
 Run these with a test TAK Server, a second device or WinTAK as the supervisor,
-and short timers (inactivity 1 min, pre-alarm 20 s, check-in 15 min).
+and short timers (no-motion time 60 s, pre-alarm 20 s, check-in 15 min).
 
 - [ ] Arm, leave the phone on a desk: pre-alarm at 1 min, alarm at 1:20. The
       supervisor sees the native 911 alert with remarks and battery.

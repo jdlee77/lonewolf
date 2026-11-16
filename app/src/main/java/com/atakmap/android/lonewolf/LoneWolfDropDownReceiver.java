@@ -401,7 +401,7 @@ public class LoneWolfDropDownReceiver extends DropDownReceiver implements
     }
 
     private void loadSettings() {
-        etInactivity.setText(String.valueOf(settings.inactivityMin()));
+        etInactivity.setText(String.valueOf(settings.inactivitySec()));
         etPreAlarm.setText(String.valueOf(settings.preAlarmSec()));
         etMotion.setText(String.valueOf(settings.motionSec()));
         etFallStill.setText(String.valueOf(settings.fallStillSec()));
@@ -478,7 +478,8 @@ public class LoneWolfDropDownReceiver extends DropDownReceiver implements
             return;
         }
         settings.prefs().edit()
-                .putInt(LoneWolfSettings.INACTIVITY_MIN, num(etInactivity, 5))
+                .putInt(LoneWolfSettings.INACTIVITY_SEC,
+                        num(etInactivity, LoneWolfSettings.INACTIVITY_SEC_DEFAULT))
                 .putInt(LoneWolfSettings.PRE_ALARM_SEC, num(etPreAlarm, 60))
                 .putInt(LoneWolfSettings.MOTION_SEC, num(etMotion, 2))
                 .putInt(LoneWolfSettings.FALL_STILL_SEC, num(etFallStill, 15))
