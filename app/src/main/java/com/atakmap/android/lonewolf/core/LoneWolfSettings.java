@@ -21,7 +21,13 @@ public class LoneWolfSettings {
     private static final String P = "lonewolf.";
 
     // configuration
-    public static final String INACTIVITY_MIN = P + "inactivity_min";
+    public static final String INACTIVITY_SEC = P + "inactivity_sec";
+    /** Legacy key (minutes) from v1.0.0; migrated to {@link #INACTIVITY_SEC}. */
+    private static final String INACTIVITY_MIN_LEGACY = P + "inactivity_min";
+
+    public static final int INACTIVITY_SEC_DEFAULT = 300;
+    public static final int INACTIVITY_SEC_MIN = 10;
+    public static final int INACTIVITY_SEC_MAX = 4 * 3600;
     public static final String PRE_ALARM_SEC = P + "pre_alarm_sec";
     public static final String MOTION_SEC = P + "motion_sec";
     public static final String SENSITIVITY = P + "sensitivity";
@@ -54,6 +60,18 @@ public class LoneWolfSettings {
 
     public LoneWolfSettings(SharedPreferences prefs) {
         this.prefs = prefs;
+        migrate();
+    }
+
+    /** Convert settings saved by older versions. */
+    private void migrate() {
+        if (prefs.contains(INACTIVITY_MIN_LEGACY)) {
+            if (!prefs.contains(INACTIVITY_SEC)) {
+                int min = getInt(INACTIVITY_MIN_LEGACY, INACTIVITY_SEC_DEFAULT / 60);
+                prefs.edit().putInt(INACTIVITY_SEC, min * 60).apply();
+            }
+            prefs.edit().remove(INACTIVITY_MIN_LEGACY).apply();
+        }
     }
 
     public SharedPreferences prefs() {
@@ -77,7 +95,9 @@ public class LoneWolfSettings {
         return Math.max(lo, Math.min(hi, v));
     }
 
-    public int inactivityMin() { return clamp(getInt(INACTIVITY_MIN, 5), 1, 240); }
+    public int inactivitySec() {
+        return clamp(getInt(INACTIVITY_SEC, INACTIVITY_SEC_DEFAULT), INACTIVITY_SEC_MIN, INACTIVITY_SEC_MAX);
+    }
     public int preAlarmSec() { return clamp(getInt(PRE_ALARM_SEC, 60), 10, 600); }
     public int motionSec() { return clamp(getInt(MOTION_SEC, 2), 1, 30); }
     public boolean fallEnabled() { return prefs.getBoolean(FALL_ENABLED, true); }
@@ -135,7 +155,7 @@ public class LoneWolfSettings {
 
     public AlarmStateMachine.Config toConfig() {
         AlarmStateMachine.Config c = new AlarmStateMachine.Config();
-        c.inactivityMs = inactivityMin() * 60_000L;
+        c.inactivityMs = inactivitySec() * 1000L;
         c.preAlarmMs = preAlarmSec() * 1000L;
         c.checkInIntervalMs = checkInEnabled() ? checkInMin() * 60_000L : 0;
         c.fallEnabled = fallEnabled();

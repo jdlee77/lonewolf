@@ -43,7 +43,7 @@
     <string name="hdr_motion">Motion &amp; man-down</string>
     <string name="hdr_local">Local alerts</string>
     <string name="hdr_tak">TAK alerts</string>
-    <string name="lbl_inactivity">No-motion time before pre-alarm (minutes)</string>
+    <string name="lbl_inactivity">No-motion time before pre-alarm (seconds, 10–14400; 300 = 5 min)</string>
     <string name="lbl_prealarm">Pre-alarm countdown before TAK alarm (seconds)</string>
     <string name="lbl_checkin">Periodic check-in (must press I\'M OK)</string>
     <string name="lbl_motion">Motion needed to reset (seconds)</string>

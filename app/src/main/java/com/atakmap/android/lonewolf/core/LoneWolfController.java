@@ -586,8 +586,16 @@ public class LoneWolfController implements AlarmStateMachine.Listener,
 
     private String armedText() {
         long next = sm.getNextCheckInMs();
-        return "Inactivity " + settings.inactivityMin() + " min"
+        return "No-motion alarm after " + formatSeconds(settings.inactivitySec())
                 + (next > 0 ? " • next check-in " + CotFactory.hhmm(next) : "");
+    }
+
+    /** 300 -> "5 min", 90 -> "1 min 30 s", 45 -> "45 s". */
+    static String formatSeconds(int sec) {
+        if (sec < 60)
+            return sec + " s";
+        int m = sec / 60, s = sec % 60;
+        return s == 0 ? m + " min" : m + " min " + s + " s";
     }
 
     private void openUi() {
@@ -595,7 +603,7 @@ public class LoneWolfController implements AlarmStateMachine.Listener,
     }
 
     private void logSettings() {
-        EventLog.i("SETTINGS", "inactivity=" + settings.inactivityMin() + "min preAlarm="
+        EventLog.i("SETTINGS", "inactivity=" + settings.inactivitySec() + "s preAlarm="
                 + settings.preAlarmSec() + "s motion=" + settings.motionSec() + "s sensitivity="
                 + settings.sensitivity() + " fall=" + settings.fallEnabled() + "/"
                 + settings.fallStillSec() + "s checkIn=" + (settings.checkInEnabled()
