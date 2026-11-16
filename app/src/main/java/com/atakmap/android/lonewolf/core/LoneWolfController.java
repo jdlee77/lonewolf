@@ -99,7 +99,7 @@ public class LoneWolfController implements AlarmStateMachine.Listener,
 
     public void start(File logDir) {
         EventLog.init(logDir);
-        EventLog.i("PLUGIN", "Lone Worker plugin started (callsign " + mapView.getDeviceCallsign()
+        EventLog.i("PLUGIN", "Lone Wolf plugin started (callsign " + mapView.getDeviceCallsign()
                 + ", uid " + MapView.getDeviceUid() + ")");
         logSettings();
         if (!isIgnoringBatteryOptimizations())
@@ -123,7 +123,7 @@ public class LoneWolfController implements AlarmStateMachine.Listener,
     }
 
     public void dispose() {
-        EventLog.i("PLUGIN", "Lone Worker plugin stopping (state " + sm.getState()
+        EventLog.i("PLUGIN", "Lone Wolf plugin stopping (state " + sm.getState()
                 + "); state is kept and restored on next start");
         handler.removeCallbacksAndMessages(null);
         motion.stop();

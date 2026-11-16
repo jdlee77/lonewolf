@@ -28,7 +28,7 @@ public class LoneWolfMapComponent extends DropDownMapComponent {
         dropDown = new LoneWolfDropDownReceiver(view, context, controller);
 
         DocumentedIntentFilter filter = new DocumentedIntentFilter();
-        filter.addAction(LoneWolfDropDownReceiver.SHOW, "Show the Lone Worker pane");
+        filter.addAction(LoneWolfDropDownReceiver.SHOW, "Show the Lone Wolf pane");
         registerDropDownReceiver(dropDown, filter);
 
         controller.start(FileSystemUtils.getItem("tools/lonewolf/logs"));
