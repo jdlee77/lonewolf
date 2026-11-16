@@ -1,4 +1,4 @@
-# Lone Worker (lonewolf): ATAK plugin
+# Lone Wolf: lone worker alarm plugin for ATAK
 
 A lone worker alarm for **ATAK-CIV 5.6**. The worker arms it from a toolbar
 button. The phone's accelerometer then watches for **inactivity** and
@@ -209,7 +209,7 @@ scripts/run-core-tests.sh               run the tests without any SDK
    ```
 
 5. In ATAK, open **Settings → Tool Preferences → Plugins** (or the Plugins
-   tool) and load **Lone Worker**. The wolf/person icon appears in the toolbar
+   tool) and load **Lone Wolf**. The wolf/person icon appears in the toolbar
    overflow.
 
 ### Running the unit tests
@@ -256,7 +256,7 @@ foreground service. For reliable monitoring with the screen off:
    **Unrestricted**. Also make sure ATAK is not in Settings → Battery → Background
    usage limits → **Sleeping / Deep sleeping apps**. The pane shows a warning
    banner while ATAK is battery-optimized.
-2. **Notifications** allowed for ATAK, including the "Lone Worker alarms"
+2. **Notifications** allowed for ATAK, including the "Lone Wolf alarms"
    channel. Set it to pop up and show on the lock screen.
 3. **Alarms & reminders** (exact alarms) allowed for ATAK if Android offers
    the toggle. Without it, the backstop wake-up is inexact (see below).
